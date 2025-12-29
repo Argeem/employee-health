@@ -1,0 +1,125 @@
+@page
+@model EmployeeHealth.Web.Pages.ProfileModel
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>โปรไฟล์ - EmployeeHealth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="min-h-screen bg-gray-50">
+  <div class="flex">
+    <aside class="w-64 bg-white p-6 border-r">
+      <div class="font-bold text-blue-600 mb-6 text-xl">HEALTHPLUS</div>
+      <nav class="space-y-2 text-sm">
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/Dashboard">แดชบอร์ด</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/ExerciseLogs">บันทึกออกกำลัง</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/KpiResults">ผลลัพธ์ KPI</a>
+        <a class="block px-3 py-2 bg-blue-500 text-white rounded shadow" href="/Profile">โปรไฟล์ของฉัน</a>
+      </nav>
+    </aside>
+
+    <main class="flex-1 p-8">
+      <div class="grid grid-cols-3 gap-6">
+        <div class="col-span-2">
+          <div class="p-6 bg-white rounded-lg shadow">
+            <h2 class="text-2xl font-bold mb-6">โปรไฟล์</h2>
+            
+            <div class="flex items-start gap-6">
+              <div class="w-32 h-32 bg-blue-600 rounded-lg flex items-center justify-center text-white text-5xl font-bold">
+                <span>🏥</span>
+              </div>
+              
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold mb-4">คุณสมชาย ใจแข็งแรง</h3>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div>
+                    <p class="text-sm text-gray-500">รหัสพนักงาน</p>
+                    <p class="text-lg font-semibold">EMP-001</p>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-500">เพศ</p>
+                    <p class="text-lg font-semibold">ชาย</p>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-500">วันเกิด</p>
+                    <p class="text-lg font-semibold">1990-01-01</p>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-500">อายุ</p>
+                    <p class="text-lg font-semibold">34 ปี</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 p-6 bg-white rounded-lg shadow">
+            <h3 class="text-xl font-bold mb-4">ข้อมูลส่วนตัว</h3>
+            
+            <div class="grid grid-cols-2 gap-6">
+              <div>
+                <p class="text-sm text-gray-500 mb-2">ส่วนสูง</p>
+                <p class="text-2xl font-bold">170 ซม.</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">น้ำหนัก</p>
+                <p class="text-2xl font-bold">75 กก.</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">ดัชนีมวลกาย</p>
+                <p class="text-2xl font-bold">24.5</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">อายุ</p>
+                <p class="text-2xl font-bold">34 ปี</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 p-6 bg-white rounded-lg shadow">
+            <h3 class="text-xl font-bold mb-4">โปรไฟล์สุขภาพ</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <p class="text-sm text-gray-500 mb-2">อัตราเต้นหัวใจสูงสุด</p>
+                <p class="text-2xl font-bold">185 BPM</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">ความดันโลหิต</p>
+                <p class="text-2xl font-bold">120/80 มมปรอท</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">สภาวะสุขภาพ</p>
+                <p class="text-2xl font-bold text-green-600">ปกติ</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 text-right">
+            <button class="px-6 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700">แก้ไขโปรไฟล์</button>
+          </div>
+        </div>
+
+        <aside class="p-6">
+          <div class="p-4 bg-white rounded-lg shadow mb-4">
+            <div class="text-sm text-gray-400">ข้อมูลอัตราเต้นหัวใจ</div>
+            <div class="mt-2 text-sm text-green-600">โซนเผาไขมัน 111 - 130 จังหวะต่อนาที</div>
+            <div class="mt-2 text-sm text-blue-600">โซนหัวใจ 130 - 157 จังหวะต่อนาที</div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg shadow">
+            <div class="text-sm text-gray-400">เป้าหมายประจำปี</div>
+            <div class="mt-2 text-3xl font-bold">2.0</div>
+            <div class="text-sm text-gray-400">อัตราสำเร็จ 86%</div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

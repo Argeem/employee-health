@@ -1,0 +1,115 @@
+@page
+@model EmployeeHealth.Web.Pages.DashboardModel
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>แดชบอร์ด - EmployeeHealth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="min-h-screen bg-gray-50">
+  <div class="flex">
+    <aside class="w-64 bg-white p-6 border-r">
+      <div class="font-bold text-blue-600 mb-6 text-xl">HEALTHPLUS</div>
+      <nav class="space-y-2 text-sm">
+        <a class="block px-3 py-2 bg-blue-500 text-white rounded shadow" href="/Dashboard">แดชบอร์ด</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/ExerciseLogs">บันทึกออกกำลัง</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/KpiResults">ผลลัพธ์ KPI</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/Profile">โปรไฟล์ของฉัน</a>
+      </nav>
+    </aside>
+    
+    <main class="flex-1 p-8">
+      <div class="grid grid-cols-3 gap-6">
+        <div class="col-span-2">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="p-6 bg-white rounded-lg shadow">
+              <div class="text-sm text-gray-400">BMI ดัชนีมวลกาย</div>
+              <div class="mt-2 text-3xl font-bold">24.5 <span class="text-sm">KG/M²</span></div>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow">
+              <div class="text-sm text-gray-400">MAX HEART RATE</div>
+              <div class="mt-2 text-3xl font-bold">185 <span class="text-sm">BPM</span></div>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow">
+              <div class="text-sm text-gray-400">QUALIFIED SESSIONS</div>
+              <div class="mt-2 text-3xl font-bold">6</div>
+            </div>
+          </div>
+
+          <div class="mt-6 p-6 bg-white rounded-lg shadow">
+            <h3 class="font-semibold mb-4 text-lg">บันทึกกิจกรรมออกกำลังใจ</h3>
+
+            <form method="post" enctype="multipart/form-data" class="grid grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="block text-sm text-gray-600">วันที่ออกกำลังใจ</label>
+                <input type="date" name="LogDate" class="mt-1 block w-full rounded-md border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-sm text-gray-600">อัตราเต้น (BPM)</label>
+                <input type="number" name="HeartRate" class="mt-1 block w-full rounded-md border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-sm text-gray-600">น้ำหนัก (กก.)</label>
+                <input type="number" step="0.1" name="Weight" class="mt-1 block w-full rounded-md border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-sm text-gray-600">ความดัน (SYS/DIA)</label>
+                <input type="text" name="BloodPressure" placeholder="120/80" class="mt-1 block w-full rounded-md border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-sm text-gray-600">กิจกรรม</label>
+                <select name="ActivityName" class="mt-1 block w-full rounded-md border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                  <option value="Running">วิ่ง (Running)</option>
+                  <option value="Cycling">ปั่นจักรยาน</option>
+                  <option value="Walking">เดิน</option>
+                </select>
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-sm text-gray-600">ระยะเวลา (นาที)</label>
+                <input type="number" name="DurationMin" class="mt-1 block w-full rounded-md border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-sm text-gray-600">ระยะทาง (กม.)</label>
+                <input type="number" step="0.1" name="Distance" class="mt-1 block w-full rounded-md border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+              </div>
+
+              <div class="space-y-2">
+                <label class="block text-sm text-gray-600">รูปประกอบ</label>
+                <input type="file" name="Image" class="mt-1 block w-full text-sm text-gray-600" />
+              </div>
+
+              <div class="col-span-2 text-right">
+                <button type="submit" class="mt-2 inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">บันทึกกิจกรรม</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <aside class="p-6">
+          <div class="p-4 bg-white rounded-lg shadow mb-4">
+            <div class="text-sm text-gray-400">HEART RATE INFO</div>
+            <div class="mt-2 text-sm text-green-600">FAT BURN ZONE 111 - 130 bpm</div>
+            <div class="mt-2 text-sm text-blue-600">CARDIO ZONE 130 - 157 bpm</div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg shadow">
+            <div class="text-sm text-gray-400">YEARLY GOAL</div>
+            <div class="mt-2 text-3xl font-bold">2.0</div>
+            <div class="text-sm text-gray-400">Success rate 86%</div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

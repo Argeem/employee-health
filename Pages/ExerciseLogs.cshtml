@@ -1,0 +1,110 @@
+@page
+@model EmployeeHealth.Web.Pages.ExerciseLogsModel
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>บันทึกออกกำลัง - EmployeeHealth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="min-h-screen bg-gray-50">
+  <div class="flex">
+    <aside class="w-64 bg-white p-6 border-r">
+      <div class="font-bold text-blue-600 mb-6 text-xl">HEALTHPLUS</div>
+      <nav class="space-y-2 text-sm">
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/Dashboard">แดชบอร์ด</a>
+        <a class="block px-3 py-2 bg-blue-500 text-white rounded shadow" href="/ExerciseLogs">บันทึกออกกำลัง</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/KpiResults">ผลลัพธ์ KPI</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/Profile">โปรไฟล์ของฉัน</a>
+      </nav>
+    </aside>
+
+    <main class="flex-1 p-8">
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-3">
+          <div class="p-6 bg-white rounded-lg shadow mb-6">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-bold">ประวัติการออกกำลัง</h2>
+              <a href="/Dashboard" class="text-blue-600 hover:text-blue-800 text-sm">+ เพิ่มกิจกรรม</a>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b">
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">วันที่</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">กิจกรรม</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">ระยะเวลา</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">อัตราเต้น</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">ความดัน</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">แสดงความคิดเห็น</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-4">2025-01-23</td>
+                    <td class="py-3 px-4">วิ่ง</td>
+                    <td class="py-3 px-4">45 นาที</td>
+                    <td class="py-3 px-4 text-blue-600 font-semibold">135/70</td>
+                    <td class="py-3 px-4 text-red-600 font-semibold">120/80</td>
+                    <td class="py-3 px-4">
+                      <button class="text-blue-600 hover:text-blue-800 text-xs">ดู</button>
+                    </td>
+                  </tr>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-4">2025-01-21</td>
+                    <td class="py-3 px-4">วิ่ง</td>
+                    <td class="py-3 px-4">58 นาที</td>
+                    <td class="py-3 px-4 text-blue-600 font-semibold">128/75</td>
+                    <td class="py-3 px-4 text-red-600 font-semibold">118/79</td>
+                    <td class="py-3 px-4">
+                      <button class="text-blue-600 hover:text-blue-800 text-xs">ดู</button>
+                    </td>
+                  </tr>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-4">2025-01-20</td>
+                    <td class="py-3 px-4">เดิน</td>
+                    <td class="py-3 px-4">38 นาที</td>
+                    <td class="py-3 px-4 text-blue-600 font-semibold">125/70</td>
+                    <td class="py-3 px-4 text-red-600 font-semibold">122/80</td>
+                    <td class="py-3 px-4">
+                      <button class="text-blue-600 hover:text-blue-800 text-xs">ดู</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 text-center text-sm text-gray-500">
+              แสดง 3 จาก 15 รายการ
+            </div>
+          </div>
+        </div>
+
+        <aside class="p-6">
+          <div class="p-4 bg-blue-50 rounded-lg shadow">
+            <div class="text-sm font-semibold text-gray-600 mb-3">สรุปการออกกำลัง</div>
+            <div class="space-y-3">
+              <div>
+                <div class="text-xs text-gray-500">ครั้งที่ออกกำลัง</div>
+                <div class="text-2xl font-bold text-blue-600">15</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500">นาทีทั้งหมด</div>
+                <div class="text-2xl font-bold text-blue-600">680</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500">เวลาเฉลี่ย</div>
+                <div class="text-2xl font-bold text-blue-600">45 นาที</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

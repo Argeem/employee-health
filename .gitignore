@@ -1,0 +1,82 @@
+# .NET Core
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.tmp
+*.temp
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+*.nuget.targets
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database
+*.db
+*.mdf
+*.ldf
+
+# Publish
+publish/
+
+# Rider
+.idea/
+
+# ReSharper
+_ReSharper*/
+*.resharper
+
+# User specific files
+*.user
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Test results
+TestResults/
+
+# Microsoft Azure Emulator
+*.emulator
+
+# Windows Azure Build Output
+csx/
+*.build.csdef
+
+# Windows Azure SDK
+*.wadcfg
+
+# Windows Azure Tools
+*.wadcfgx
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# ASP.NET Core
+appsettings.Development.json
+Properties/launchSettings.json
+
+# Static web assets
+wwwroot/lib/
+
+# Other
+*.swp
+*.bak
+*~

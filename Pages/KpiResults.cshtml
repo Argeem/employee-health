@@ -1,0 +1,112 @@
+@page
+@model EmployeeHealth.Web.Pages.KpiResultsModel
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ผลลัพธ์ KPI - EmployeeHealth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="min-h-screen bg-gray-50">
+  <div class="flex">
+    <aside class="w-64 bg-white p-6 border-r">
+      <div class="font-bold text-blue-600 mb-6 text-xl">HEALTHPLUS</div>
+      <nav class="space-y-2 text-sm">
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/Dashboard">แดชบอร์ด</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/ExerciseLogs">บันทึกออกกำลัง</a>
+        <a class="block px-3 py-2 bg-blue-500 text-white rounded shadow" href="/KpiResults">ผลลัพธ์ KPI</a>
+        <a class="block px-3 py-2 text-gray-500 hover:text-gray-700" href="/Profile">โปรไฟล์ของฉัน</a>
+      </nav>
+    </aside>
+
+    <main class="flex-1 p-8">
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-3">
+          <div class="p-6 bg-white rounded-lg shadow mb-6">
+            <h2 class="text-2xl font-bold mb-6">ผลลัพธ์ KPI</h2>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b">
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">ปี</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">เดือน</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">อัตราการเข้าร่วม (%)</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">คะแนน KPI</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">สถานะ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-4">2025</td>
+                    <td class="py-3 px-4">มกราคม</td>
+                    <td class="py-3 px-4">95%</td>
+                    <td class="py-3 px-4 font-semibold">85/100</td>
+                    <td class="py-3 px-4">
+                      <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">ผ่าน</span>
+                    </td>
+                  </tr>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-4">2024</td>
+                    <td class="py-3 px-4">ธันวาคม</td>
+                    <td class="py-3 px-4">88%</td>
+                    <td class="py-3 px-4 font-semibold">78/100</td>
+                    <td class="py-3 px-4">
+                      <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">ผ่าน</span>
+                    </td>
+                  </tr>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-4">2024</td>
+                    <td class="py-3 px-4">พฤศจิกายน</td>
+                    <td class="py-3 px-4">92%</td>
+                    <td class="py-3 px-4 font-semibold">82/100</td>
+                    <td class="py-3 px-4">
+                      <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">ผ่าน</span>
+                    </td>
+                  </tr>
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-4">2024</td>
+                    <td class="py-3 px-4">ตุลาคม</td>
+                    <td class="py-3 px-4">75%</td>
+                    <td class="py-3 px-4 font-semibold">68/100</td>
+                    <td class="py-3 px-4">
+                      <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">ต้องปรับปรุง</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 text-center text-sm text-gray-500">
+              แสดง 4 จาก 12 รายการ
+            </div>
+          </div>
+        </div>
+
+        <aside class="p-6">
+          <div class="p-4 bg-white rounded-lg shadow mb-4">
+            <div class="text-sm text-gray-400 mb-3">คะแนน KPI ล่าสุด</div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">85</div>
+            <div class="text-sm text-gray-600">คะแนนเต็ม 100</div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg shadow mb-4">
+            <div class="text-sm text-gray-400 mb-3">อัตราผ่าน</div>
+            <div class="text-3xl font-bold text-green-600">95%</div>
+            <div class="text-sm text-gray-600">ในเดือนนี้</div>
+          </div>
+
+          <div class="p-4 bg-white rounded-lg shadow">
+            <div class="text-sm text-gray-400 mb-3">เป้าหมายประจำปี</div>
+            <div class="text-2xl font-bold">85/100</div>
+            <div class="text-sm text-gray-600">ความก้าวหน้า: 85%</div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>
