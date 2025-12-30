@@ -35,17 +35,6 @@ public class DashboardModel : PageModel
     {
         try
         {
-            // Log raw form data
-            _logger.LogInformation("=== Form Data Received ===");
-            _logger.LogInformation($"Input object: {Input}");
-            _logger.LogInformation($"Weight: {Input.Weight} (Type: {Input.Weight.GetType()})");
-            _logger.LogInformation($"ActivityName: '{Input.ActivityName}'");
-            _logger.LogInformation($"DurationMin: {Input.DurationMin}");
-            _logger.LogInformation($"HeartRate: {Input.HeartRate}");
-            _logger.LogInformation($"BloodPressure: '{Input.BloodPressure}'");
-            _logger.LogInformation($"LogDate: {Input.LogDate}");
-            _logger.LogInformation($"ImageEvidence: {Input.ImageEvidence?.FileName ?? "null"}");
-
             // ตรวจสอบความถูกต้องของข้อมูล
             if (Input.Weight <= 0)
             {

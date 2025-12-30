@@ -28,15 +28,15 @@
           <div class="grid grid-cols-3 gap-4">
             <div class="p-6 bg-white rounded-lg shadow">
               <div class="text-sm text-gray-400">BMI ดัชนีมวลกาย</div>
-              <div class="mt-2 text-3xl font-bold">24.5 <span class="text-sm">KG/M²</span></div>
+              <div class="mt-2 text-3xl font-bold">@(Model.Summary?.BMI?.ToString("F1") ?? "N/A") <span class="text-sm">KG/M²</span></div>
             </div>
             <div class="p-6 bg-white rounded-lg shadow">
               <div class="text-sm text-gray-400">MAX HEART RATE</div>
-              <div class="mt-2 text-3xl font-bold">185 <span class="text-sm">BPM</span></div>
+              <div class="mt-2 text-3xl font-bold">@(Model.Summary?.MaxHeartRate ?? 0) <span class="text-sm">BPM</span></div>
             </div>
             <div class="p-6 bg-white rounded-lg shadow">
               <div class="text-sm text-gray-400">QUALIFIED SESSIONS</div>
-              <div class="mt-2 text-3xl font-bold">6</div>
+              <div class="mt-2 text-3xl font-bold">@(Model.Summary?.QualifiedSessions ?? 0)</div>
             </div>
           </div>
 
@@ -130,8 +130,8 @@
 
           <div class="p-4 bg-white rounded-lg shadow">
             <div class="text-sm text-gray-400">YEARLY GOAL</div>
-            <div class="mt-2 text-3xl font-bold">2.0</div>
-            <div class="text-sm text-gray-400">Success rate 86%</div>
+            <div class="mt-2 text-3xl font-bold">@(Model.Summary?.QualifiedSessions ?? 0)<span class="text-sm">/156</span></div>
+            <div class="text-sm text-gray-400">Success rate @((Model.Summary?.SuccessRate ?? 0).ToString("F1"))%</div>
           </div>
         </aside>
       </div>
