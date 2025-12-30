@@ -34,13 +34,13 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// Critical: Set UTF-8 charset on ALL HTML responses
+app.UseRouting();
+
+// Critical: Set UTF-8 charset on ALL HTML responses - MUST be after UseRouting
 app.Use(async (context, next) =>
 {
-    // Set response content type with UTF-8 charset for HTML responses
     var path = context.Request.Path.Value ?? "";
     
-    // Check if this is a Razor page or any HTML request
     bool isHtmlRequest = path.StartsWith("/Dashboard") || 
                          path.StartsWith("/ExerciseLogs") ||
                          path.StartsWith("/KpiResults") ||
@@ -48,27 +48,26 @@ app.Use(async (context, next) =>
                          path == "/" ||
                          path.EndsWith(".html");
 
-    if (isHtmlRequest)
-    {
-        // Force UTF-8 charset for Razor pages
-        context.Response.ContentType = "text/html; charset=utf-8";
-    }
-
-    // Ensure charset is added to response even if set elsewhere
+    // Set charset ONLY after response has started and is HTML
     context.Response.OnStarting(() =>
     {
-        var contentType = context.Response.ContentType;
-        if (contentType != null && contentType.Contains("text/html") && !contentType.Contains("charset"))
+        if (isHtmlRequest)
         {
-            context.Response.ContentType = contentType + "; charset=utf-8";
+            var contentType = context.Response.ContentType ?? "";
+            if (contentType.Contains("text/html") && !contentType.Contains("charset"))
+            {
+                context.Response.ContentType = contentType + "; charset=utf-8";
+            }
+            else if (!contentType.Contains("charset"))
+            {
+                context.Response.ContentType = "text/html; charset=utf-8";
+            }
         }
         return System.Threading.Tasks.Task.CompletedTask;
     });
 
     await next();
 });
-
-app.UseRouting();
 
 app.UseAuthorization();
 

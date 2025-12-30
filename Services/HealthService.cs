@@ -32,6 +32,14 @@ public class HealthService : IHealthService
         };
     }
 
+    public async Task<List<ExerciseLog>> GetExerciseLogsAsync(string empId)
+    {
+        return await _db.ExerciseLogs
+            .Where(l => l.EmpId == empId)
+            .OrderByDescending(l => l.LogDate)
+            .ToListAsync();
+    }
+
     public async Task LogExerciseAsync(ExerciseLog input)
     {
         _db.ExerciseLogs.Add(input);

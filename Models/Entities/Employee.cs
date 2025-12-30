@@ -20,6 +20,7 @@ public class ExerciseLog
     public decimal Weight { get; set; }
     public int? HeartRate { get; set; }
     public string? BloodPressure { get; set; }
+    public string? ActivityName { get; set; }
     public int DurationMin { get; set; }
     public decimal? DistanceKm { get; set; }
     public string? ImageEvidence { get; set; }

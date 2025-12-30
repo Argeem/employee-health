@@ -58,6 +58,9 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.BloodPressure)
                 .HasColumnName("blood_pressure")
                 .HasMaxLength(50);
+            entity.Property(e => e.ActivityName)
+                .HasColumnName("activity_name")
+                .HasMaxLength(100);
             entity.Property(e => e.DurationMin)
                 .HasColumnName("duration_minutes");
             entity.Property(e => e.DistanceKm)
@@ -70,7 +73,8 @@ public class ApplicationDbContext : DbContext
                 .HasColumnName("log_date");
             entity.Property(e => e.Status)
                 .HasColumnName("status")
-                .HasMaxLength(50);
+                .HasMaxLength(50)
+                .HasConversion<string>();
             entity.Property(e => e.AdminRemark)
                 .HasColumnName("admin_remark");
         });

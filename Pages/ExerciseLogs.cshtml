@@ -37,48 +37,53 @@
                     <th class="text-left py-3 px-4 font-semibold text-gray-600">วันที่</th>
                     <th class="text-left py-3 px-4 font-semibold text-gray-600">กิจกรรม</th>
                     <th class="text-left py-3 px-4 font-semibold text-gray-600">ระยะเวลา</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">ระยะทาง</th>
                     <th class="text-left py-3 px-4 font-semibold text-gray-600">อัตราเต้น</th>
                     <th class="text-left py-3 px-4 font-semibold text-gray-600">ความดัน</th>
-                    <th class="text-left py-3 px-4 font-semibold text-gray-600">แสดงความคิดเห็น</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-600">สถานะ</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="border-b hover:bg-gray-50">
-                    <td class="py-3 px-4">2025-01-23</td>
-                    <td class="py-3 px-4">วิ่ง</td>
-                    <td class="py-3 px-4">45 นาที</td>
-                    <td class="py-3 px-4 text-blue-600 font-semibold">135/70</td>
-                    <td class="py-3 px-4 text-red-600 font-semibold">120/80</td>
-                    <td class="py-3 px-4">
-                      <button class="text-blue-600 hover:text-blue-800 text-xs">ดู</button>
-                    </td>
-                  </tr>
-                  <tr class="border-b hover:bg-gray-50">
-                    <td class="py-3 px-4">2025-01-21</td>
-                    <td class="py-3 px-4">วิ่ง</td>
-                    <td class="py-3 px-4">58 นาที</td>
-                    <td class="py-3 px-4 text-blue-600 font-semibold">128/75</td>
-                    <td class="py-3 px-4 text-red-600 font-semibold">118/79</td>
-                    <td class="py-3 px-4">
-                      <button class="text-blue-600 hover:text-blue-800 text-xs">ดู</button>
-                    </td>
-                  </tr>
-                  <tr class="border-b hover:bg-gray-50">
-                    <td class="py-3 px-4">2025-01-20</td>
-                    <td class="py-3 px-4">เดิน</td>
-                    <td class="py-3 px-4">38 นาที</td>
-                    <td class="py-3 px-4 text-blue-600 font-semibold">125/70</td>
-                    <td class="py-3 px-4 text-red-600 font-semibold">122/80</td>
-                    <td class="py-3 px-4">
-                      <button class="text-blue-600 hover:text-blue-800 text-xs">ดู</button>
-                    </td>
-                  </tr>
+                  @if (Model.ExerciseLogs != null && Model.ExerciseLogs.Any())
+                  {
+                    @foreach (var log in Model.ExerciseLogs.Take(10))
+                    {
+                      <tr class="border-b hover:bg-gray-50">
+                        <td class="py-3 px-4">@log.LogDate.ToString("yyyy-MM-dd")</td>
+                        <td class="py-3 px-4">@log.ActivityName</td>
+                        <td class="py-3 px-4">@log.DurationMin นาที</td>
+                        <td class="py-3 px-4">@(log.DistanceKm.HasValue ? $"{log.DistanceKm} km" : "-")</td>
+                        <td class="py-3 px-4">@(log.HeartRate.HasValue ? $"{log.HeartRate} bpm" : "-")</td>
+                        <td class="py-3 px-4">@(string.IsNullOrEmpty(log.BloodPressure) ? "-" : log.BloodPressure)</td>
+                        <td class="py-3 px-4">
+                          <span class="px-2 py-1 text-xs rounded @(log.Status == "Approved" ? "bg-green-100 text-green-700" : log.Status == "Rejected" ? "bg-red-100 text-red-700" : "bg-yellow-100 text-yellow-700")">
+                            @log.Status
+                          </span>
+                        </td>
+                      </tr>
+                    }
+                  }
+                  else
+                  {
+                    <tr>
+                      <td colspan="7" class="py-3 px-4 text-center text-gray-500">
+                        ไม่มีข้อมูลการออกกำลัง
+                      </td>
+                    </tr>
+                  }
                 </tbody>
               </table>
             </div>
 
             <div class="mt-4 text-center text-sm text-gray-500">
-              แสดง 3 จาก 15 รายการ
+              @if (Model.ExerciseLogs != null && Model.ExerciseLogs.Any())
+              {
+                @($"แสดง {Math.Min(10, Model.ExerciseLogs.Count)} จาก {Model.ExerciseLogs.Count} รายการ")
+              }
+              else
+              {
+                <span>ไม่มีข้อมูล</span>
+              }
             </div>
           </div>
         </div>
@@ -89,15 +94,15 @@
             <div class="space-y-3">
               <div>
                 <div class="text-xs text-gray-500">ครั้งที่ออกกำลัง</div>
-                <div class="text-2xl font-bold text-blue-600">15</div>
+                <div class="text-2xl font-bold text-blue-600">@Model.TotalLogs</div>
               </div>
               <div>
                 <div class="text-xs text-gray-500">นาทีทั้งหมด</div>
-                <div class="text-2xl font-bold text-blue-600">680</div>
+                <div class="text-2xl font-bold text-blue-600">@Model.TotalMinutes</div>
               </div>
               <div>
                 <div class="text-xs text-gray-500">เวลาเฉลี่ย</div>
-                <div class="text-2xl font-bold text-blue-600">45 นาที</div>
+                <div class="text-2xl font-bold text-blue-600">@(Model.AverageMinutes > 0 ? $"{Model.AverageMinutes} นาที" : "-")</div>
               </div>
             </div>
           </div>
