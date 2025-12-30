@@ -37,7 +37,7 @@ public class HealthService : IHealthService
         // นับ Qualified Sessions (กิจกรรมที่มีระยะเวลา >= 30 นาที)
         int qualifiedSessions = logs.Count(l => l.DurationMin >= 30);
 
-        // คำนวณ Success Rate: (Qualified Sessions / Target per year) * 100
+        // คำนวณ Success Rate: (Qualified Sessions / 156 target per year) * 100
         // Target = 3 sessions/week × 52 weeks = 156 sessions/year
         double successRate = (qualifiedSessions / 156.0) * 100.0;
 
@@ -45,6 +45,9 @@ public class HealthService : IHealthService
         {
             EmpId = empId,
             Name = employee?.FullName ?? string.Empty,
+            Gender = employee?.Gender,
+            Dob = employee?.Dob,
+            Height = employee?.Height,
             LatestWeight = latestWeight,
             ExerciseCount = logs.Count,
             BMI = bmi,

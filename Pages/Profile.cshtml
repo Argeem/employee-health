@@ -50,15 +50,26 @@
           </div>
 
           <div class="mt-6 p-6 bg-white rounded-lg shadow">
-            <h3 class="text-xl font-bold mb-4">ข้อมูลสุขภาพ</h3>
+            <h3 class="text-xl font-bold mb-6">ข้อมูลส่วนตัว</h3>
             
             <div class="grid grid-cols-2 gap-6">
               <div>
-                <p class="text-sm text-gray-500 mb-2">น้ำหนักล่าสุด</p>
-                <p class="text-2xl font-bold">
-                  @if (Model.HealthData?.LatestWeight.HasValue ?? false)
+                <p class="text-sm text-gray-500 mb-2">เพศ</p>
+                <p class="text-lg font-semibold">
+                  @if (Model.HealthData?.Gender != null)
                   {
-                    <span>@Model.HealthData.LatestWeight.Value.ToString("F1") กก.</span>
+                    @if (Model.HealthData.Gender.ToLower() == "m" || Model.HealthData.Gender.ToLower() == "male")
+                    {
+                      <span>ชาย</span>
+                    }
+                    else if (Model.HealthData.Gender.ToLower() == "f" || Model.HealthData.Gender.ToLower() == "female")
+                    {
+                      <span>หญิง</span>
+                    }
+                    else
+                    {
+                      <span>@Model.HealthData.Gender</span>
+                    }
                   }
                   else
                   {
@@ -67,8 +78,84 @@
                 </p>
               </div>
               <div>
+                <p class="text-sm text-gray-500 mb-2">วันเกิด</p>
+                <p class="text-lg font-semibold">
+                  @if (Model.HealthData?.Dob.HasValue ?? false)
+                  {
+                    <span>@Model.HealthData.Dob.Value.ToString("dd/MM/yyyy")</span>
+                  }
+                  else
+                  {
+                    <span class="text-gray-400">ยังไม่มีข้อมูล</span>
+                  }
+                </p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">ส่วนสูง</p>
+                <p class="text-lg font-semibold">
+                  @if (Model.HealthData?.Height.HasValue ?? false)
+                  {
+                    <span>@Model.HealthData.Height.Value.ToString("F1") ซม.</span>
+                  }
+                  else
+                  {
+                    <span class="text-gray-400">ยังไม่มีข้อมูล</span>
+                  }
+                </p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">BMI</p>
+                <p class="text-lg font-semibold">
+                  @if (Model.HealthData?.BMI.HasValue ?? false)
+                  {
+                    <span>@Model.HealthData.BMI.Value.ToString("F1")</span>
+                  }
+                  else
+                  {
+                    <span class="text-gray-400">ยังไม่มีข้อมูล</span>
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 p-6 bg-white rounded-lg shadow">
+            <h3 class="text-xl font-bold mb-6">ข้อมูลสุขภาพ</h3>
+            
+            <div class="grid grid-cols-2 gap-6">
+              <div>
+                <p class="text-sm text-gray-500 mb-2">น้ำหนักล่าสุด</p>
+                <p class="text-2xl font-bold">
+                  @if (Model.HealthData?.LatestWeight.HasValue ?? false)
+                  {
+                    <span>@Model.HealthData.LatestWeight.Value.ToString("F1") <span class="text-sm">กก.</span></span>
+                  }
+                  else
+                  {
+                    <span class="text-gray-400 text-lg">ยังไม่มีข้อมูล</span>
+                  }
+                </p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">อัตราเต้นหัวใจสูงสุด</p>
+                <p class="text-2xl font-bold">
+                  @if (Model.HealthData?.MaxHeartRate.HasValue ?? false)
+                  {
+                    <span>@Model.HealthData.MaxHeartRate.Value <span class="text-sm">BPM</span></span>
+                  }
+                  else
+                  {
+                    <span class="text-gray-400 text-lg">ยังไม่มีข้อมูล</span>
+                  }
+                </p>
+              </div>
+              <div>
                 <p class="text-sm text-gray-500 mb-2">จำนวนครั้งออกกำลัง</p>
-                <p class="text-2xl font-bold">@(Model.HealthData?.ExerciseCount ?? 0) ครั้ง</p>
+                <p class="text-2xl font-bold">@(Model.HealthData?.ExerciseCount ?? 0) <span class="text-sm">ครั้ง</span></p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 mb-2">ครั้งที่ผ่านเกณฑ์</p>
+                <p class="text-2xl font-bold">@(Model.HealthData?.QualifiedSessions ?? 0) <span class="text-sm">ครั้ง</span></p>
               </div>
             </div>
           </div>
