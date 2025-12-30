@@ -22,7 +22,7 @@ public class DashboardModel : PageModel
 
     public async Task OnGetAsync()
     {
-        Summary = await _healthService.GetHealthSummaryAsync("EMP-001");
+        Summary = await _healthService.GetHealthSummaryAsync("EMP001");
     }
 
     public async Task<IActionResult> OnPostAsync()
@@ -30,7 +30,7 @@ public class DashboardModel : PageModel
         // map posted fields to ExerciseLog
         if (!ModelState.IsValid)
         {
-            Summary = await _healthService.GetHealthSummaryAsync("EMP-001");
+            Summary = await _healthService.GetHealthSummaryAsync("EMP001");
             return Page();
         }
 

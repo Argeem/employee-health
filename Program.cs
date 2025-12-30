@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure default encoding to UTF-8 across the entire application
@@ -7,32 +10,15 @@ System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Inst
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-// Register a simple in-memory ApplicationDbContext
-builder.Services.AddSingleton<Data.ApplicationDbContext>();
+// Configure database connection
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? "Server=127.0.0.1;Port=3306;Database=database;User=root;Password=;";
+builder.Services.AddDbContext<Data.ApplicationDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddScoped<Services.IHealthService, Services.HealthService>();
 
 var app = builder.Build();
-
-// Seed mock data
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<Data.ApplicationDbContext>();
-    // Seed employee if not exists
-    var existing = db.Employees.FirstOrDefault(e => e.EmpId == "EMP-001");
-    if (existing == null)
-    {
-        db.AddEmployee(new Models.Entities.Employee
-        {
-            EmpId = "EMP-001",
-            FullName = "คุณสมชาย ใจแข็งแรง",
-            Gender = Models.Entities.Gender.Male,
-            Dob = new DateTime(1990, 1, 1),
-            Height = 170
-        });
-        db.SaveChangesAsync().GetAwaiter().GetResult();
-    }
-}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

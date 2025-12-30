@@ -33,24 +33,16 @@
               </div>
               
               <div class="flex-1">
-                <h3 class="text-2xl font-bold mb-4">คุณสมชาย ใจแข็งแรง</h3>
+                <h3 class="text-2xl font-bold mb-4">@(Model.HealthData?.Name ?? "ไม่พบข้อมูล")</h3>
                 
                 <div class="grid grid-cols-2 gap-4 mb-6">
                   <div>
                     <p class="text-sm text-gray-500">รหัสพนักงาน</p>
-                    <p class="text-lg font-semibold">EMP-001</p>
+                    <p class="text-lg font-semibold">@(Model.HealthData?.EmpId ?? "N/A")</p>
                   </div>
                   <div>
-                    <p class="text-sm text-gray-500">เพศ</p>
-                    <p class="text-lg font-semibold">ชาย</p>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">วันเกิด</p>
-                    <p class="text-lg font-semibold">1990-01-01</p>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">อายุ</p>
-                    <p class="text-lg font-semibold">34 ปี</p>
+                    <p class="text-sm text-gray-500">จำนวนครั้งออกกำลัง</p>
+                    <p class="text-lg font-semibold">@(Model.HealthData?.ExerciseCount ?? 0) ครั้ง</p>
                   </div>
                 </div>
               </div>
@@ -58,43 +50,25 @@
           </div>
 
           <div class="mt-6 p-6 bg-white rounded-lg shadow">
-            <h3 class="text-xl font-bold mb-4">ข้อมูลส่วนตัว</h3>
+            <h3 class="text-xl font-bold mb-4">ข้อมูลสุขภาพ</h3>
             
             <div class="grid grid-cols-2 gap-6">
               <div>
-                <p class="text-sm text-gray-500 mb-2">ส่วนสูง</p>
-                <p class="text-2xl font-bold">170 ซม.</p>
+                <p class="text-sm text-gray-500 mb-2">น้ำหนักล่าสุด</p>
+                <p class="text-2xl font-bold">
+                  @if (Model.HealthData?.LatestWeight.HasValue ?? false)
+                  {
+                    <span>@Model.HealthData.LatestWeight.Value.ToString("F1") กก.</span>
+                  }
+                  else
+                  {
+                    <span class="text-gray-400">ยังไม่มีข้อมูล</span>
+                  }
+                </p>
               </div>
               <div>
-                <p class="text-sm text-gray-500 mb-2">น้ำหนัก</p>
-                <p class="text-2xl font-bold">75 กก.</p>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 mb-2">ดัชนีมวลกาย</p>
-                <p class="text-2xl font-bold">24.5</p>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 mb-2">อายุ</p>
-                <p class="text-2xl font-bold">34 ปี</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 p-6 bg-white rounded-lg shadow">
-            <h3 class="text-xl font-bold mb-4">โปรไฟล์สุขภาพ</h3>
-            
-            <div class="space-y-4">
-              <div>
-                <p class="text-sm text-gray-500 mb-2">อัตราเต้นหัวใจสูงสุด</p>
-                <p class="text-2xl font-bold">185 BPM</p>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 mb-2">ความดันโลหิต</p>
-                <p class="text-2xl font-bold">120/80 มมปรอท</p>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 mb-2">สภาวะสุขภาพ</p>
-                <p class="text-2xl font-bold text-green-600">ปกติ</p>
+                <p class="text-sm text-gray-500 mb-2">จำนวนครั้งออกกำลัง</p>
+                <p class="text-2xl font-bold">@(Model.HealthData?.ExerciseCount ?? 0) ครั้ง</p>
               </div>
             </div>
           </div>
@@ -106,15 +80,25 @@
 
         <aside class="p-6">
           <div class="p-4 bg-white rounded-lg shadow mb-4">
-            <div class="text-sm text-gray-400">ข้อมูลอัตราเต้นหัวใจ</div>
-            <div class="mt-2 text-sm text-green-600">โซนเผาไขมัน 111 - 130 จังหวะต่อนาที</div>
-            <div class="mt-2 text-sm text-blue-600">โซนหัวใจ 130 - 157 จังหวะต่อนาที</div>
+            <div class="text-sm text-gray-400">สถานะข้อมูล</div>
+            @if (Model.HealthData != null)
+            {
+              <div class="mt-2 text-sm text-green-600">✓ ดึงข้อมูลจากฐานข้อมูลเรียบร้อย</div>
+            }
+            else
+            {
+              <div class="mt-2 text-sm text-red-600">✗ ไม่พบข้อมูล</div>
+            }
           </div>
 
           <div class="p-4 bg-white rounded-lg shadow">
-            <div class="text-sm text-gray-400">เป้าหมายประจำปี</div>
-            <div class="mt-2 text-3xl font-bold">2.0</div>
-            <div class="text-sm text-gray-400">อัตราสำเร็จ 86%</div>
+            <div class="text-sm text-gray-400">ข้อมูลพื้นฐาน</div>
+            <div class="mt-2 text-xs text-gray-600">
+              <p>รหัส: @(Model.HealthData?.EmpId ?? "N/A")</p>
+              <p>ชื่อ: @(Model.HealthData?.Name ?? "N/A")</p>
+              <p>ออกกำลัง: @(Model.HealthData?.ExerciseCount ?? 0) ครั้ง</p>
+              <p>น้ำหนัก: @(Model.HealthData?.LatestWeight?.ToString("F1") ?? "N/A") กก.</p>
+            </div>
           </div>
         </aside>
       </div>

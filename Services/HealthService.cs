@@ -1,6 +1,7 @@
 using Data;
 using Models.Entities;
 using Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace Services;
@@ -17,7 +18,7 @@ public class HealthService : IHealthService
     public async Task<HealthSummaryVm> GetHealthSummaryAsync(string empId)
     {
         var employee = await _db.FindEmployeeAsync(empId);
-        var logs = _db.ExerciseLogs.Where(l => l.EmpId == empId).OrderByDescending(l => l.LogDate).ToList();
+        var logs = await _db.ExerciseLogs.Where(l => l.EmpId == empId).OrderByDescending(l => l.LogDate).ToListAsync();
 
         var latest = logs.FirstOrDefault();
         double? latestWeight = latest != null ? (double?)latest.Weight : null;
@@ -33,7 +34,7 @@ public class HealthService : IHealthService
 
     public async Task LogExerciseAsync(ExerciseLog input)
     {
-        _db.AddExerciseLog(input);
+        _db.ExerciseLogs.Add(input);
         await _db.SaveChangesAsync();
     }
 }
